@@ -5,7 +5,7 @@ excerpt: "Learn how we create delicious gluten-free options that don't compromis
 date: "2025-03-15"
 author: "Lisa Chen"
 category: "Recipes"
-imageUrl: "/images/blog-gluten-free-cookies.png"
+imageUrl: "/images/blog-gluten-free-cookies.webp"
 tags: ['Gluten-free', 'Baking tips']
 ---
 

@@ -5,7 +5,7 @@ excerpt: "Discover the techniques and ingredients that make our chocolate chip c
 date: "2024-09-12"
 author: "Sarah Baker"
 category: "Recipes"
-imageUrl: "/images/placeholder-chocolate-chip-cookies.png"
+imageUrl: "/images/placeholder-chocolate-chip-cookies.webp"
 tags: ['Cookies', 'Baking tips', 'Chocolate']
 ---
 

@@ -20,10 +20,10 @@ import { getButtonClass } from "./Button/getButtonClass";
 			class="absolute inset-0"
 		>
 			<div
-				class="absolute inset-0 bg-cover bg-center"
+				class="absolute inset-0 bg-cover bg-center h-[700px]"
 				:style="`background-image: url(${slide.image})`"
 			>
-				<div class="absolute inset-0 bg-black opacity-40"></div>
+				<div class="absolute inset-0 bg-black opacity-60"></div>
 			</div>
 
 			<div
@@ -36,11 +36,11 @@ import { getButtonClass } from "./Button/getButtonClass";
 					>
 					</h1>
 					<p
-						class="text-2xl font-handwritten md:text-3xl text-white mb-8"
+						class="text-xl md:text-2xl text-white mb-8"
 						x-text="slide.description"
 					>
 					</p>
-					<a href="/products" class=`${getButtonClass({ variant: "solid" })} `>
+					<a href="/products" class=`${getButtonClass({ variant: "solid" })}`>
 						Explore Our Treats
 					</a>
 				</div>
@@ -82,17 +82,17 @@ import { getButtonClass } from "./Button/getButtonClass";
 				current: 0,
 				slides: [
 					{
-						image: "/images/showcase-fb-cookies.png",
-						title: "Freshly Baked",
-						description: "Handcrafted with love and the finest ingredients",
-					},
-					{
-						image: "/images/showcase-b-cookies.png",
+						image: "/images/showcase-b-cookies.webp",
 						title: "Special Occasion",
 						description: "Beautiful treats for every occasion",
 					},
 					{
-						image: "/images/showcase-m-cookies.png",
+						image: "/images/showcase-fb-cookies.webp",
+						title: "Freshly Baked",
+						description: "Handcrafted with love and the finest ingredients",
+					},
+					{
+						image: "/images/showcase-m-cookies.webp",
 						title: "Custom Design",
 						description: "Personalized for your special events",
 					},

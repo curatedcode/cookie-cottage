@@ -5,7 +5,7 @@ excerpt: "Simple storage tips to ensure your cookies stay delicious days after p
 date: "2025-02-28"
 author: "Emma Johnson"
 category: "Tips"
-imageUrl: "/images/blog-cookie-care.png"
+imageUrl: "/images/blog-cookie-care.webp"
 tags: ['Storage', 'Freshness', 'Tips']
 ---
 

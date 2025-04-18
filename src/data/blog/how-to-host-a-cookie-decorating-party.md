@@ -5,7 +5,7 @@ excerpt: "Everything you need to know to plan a successful cookie decorating eve
 date: "2025-01-05"
 author: "Emma Johnson"
 category: "Events"
-imageUrl: "/images/placeholder-decorated-sugar-cookies.png"
+imageUrl: "/images/placeholder-decorated-sugar-cookies.webp"
 tags: ['Party', 'Decorating', 'Events']
 ---
 

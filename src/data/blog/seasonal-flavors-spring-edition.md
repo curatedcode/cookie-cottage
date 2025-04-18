@@ -5,7 +5,7 @@ excerpt: "Explore our new spring-inspired flavors featuring fresh fruits and flo
 date: "2025-03-21"
 author: "Michael Thompson"
 category: "Seasonal"
-imageUrl: "/images/blog-spring-seasonal-cookies.png"
+imageUrl: "/images/blog-spring-seasonal-cookies.webp"
 tags: ['Seasonal', 'Spring', 'New flavors']
 ---
 

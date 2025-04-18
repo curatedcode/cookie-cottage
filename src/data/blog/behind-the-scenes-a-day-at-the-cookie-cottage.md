@@ -5,7 +5,7 @@ excerpt: "Take a peek into our kitchen and see how we prepare our fresh-baked tr
 date: "2025-03-07"
 author: "Sarah Baker"
 category: "Stories"
-imageUrl: "/images/blog-behind-the-scenes.png"
+imageUrl: "/images/blog-behind-the-scenes.webp"
 tags: ['Behind the scenes', 'Bakery life']
 ---
 
