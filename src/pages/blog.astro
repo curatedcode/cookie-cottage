@@ -1,0 +1,204 @@
+---
+import { getCollection } from "astro:content";
+import { CalendarIcon, MagnifyingGlassIcon } from "../components/Icons";
+import Layout from "../layouts/Layout.astro";
+
+const blogPosts = await getCollection("blog");
+const postsData = blogPosts.map((post) => post.data);
+const postsSorted = postsData.sort(
+	(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
+---
+
+<script is:inline define:vars={{ postsSorted }}>
+	window.blogPostsData = {
+		posts: postsSorted,
+	};
+</script>
+
+<Layout title="Blog - The Cookie Cottage">
+	<div class="container mx-auto px-4 py-12" x-data="blogApp">
+		<div class="text-center mb-12">
+			<h1
+				class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+			>
+				Blog
+			</h1>
+			<div class="w-24 h-1 bg-custom-brown mx-auto mb-6 rounded-full"></div>
+			<p class="text-gray-11 max-w-2xl mx-auto">
+				Discover baking tips, seasonal recipes, event ideas and
+				behind-the-scenes stories from The Cookie Cottage.
+			</p>
+		</div>
+
+		<div class="grid gap-6 mx-auto justify-items-center mb-12">
+			<div
+				class="flex flex-wrap justify-center w-fit gap-1 bg-gray-2 border border-gray-3 rounded-lg p-1"
+			>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'All' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'All'"
+				>
+					All
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'Recipes' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'Recipes'"
+				>
+					Recipes
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'Events' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'Events'"
+				>
+					Events
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'Seasonal' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'Seasonal'"
+				>
+					Seasonal
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'Tips' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'Tips'"
+				>
+					Tips
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="category === 'Stories' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="category = 'Stories'"
+				>
+					Stories
+				</button>
+			</div>
+			<div class="relative w-full md:w-64">
+				<MagnifyingGlassIcon
+					class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-8 size-4"
+				/>
+				<input
+					type="text"
+					placeholder="Search posts..."
+					class="flex h-full w-full rounded-lg bg-gray-2 border border-gray-3 px-3 py-2 text-lg placeholder:text-gray-8 focus-visible:outline-none focus-visible:border-accent-a8 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10"
+					x-model="searchTerm"
+				/>
+			</div>
+		</div>
+		<template x-if="filteredPosts.length > 0">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<template x-for="post in filteredPosts" :key="post.id">
+					<div
+						class="bg-white border border-gray-3 h-full rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 duration-300"
+					>
+						<div
+							class="h-64 bg-cover bg-center"
+							:style="`background-image: url(${post.imageUrl})`"
+						>
+						</div>
+						<div class="p-5">
+							<span
+								class="inline-block px-3 py-1 text-xs font-medium text-custom-brown bg-accent-2 rounded-full mb-3"
+								x-text="post.category.charAt(0).toUpperCase() + post.category.slice(1)"
+							>
+							</span>
+							<h2
+								class="text-xl font-handwritten font-bold text-custom-brown mb-2"
+								x-text="post.title"
+							>
+							</h2>
+							<p class="text-sm line-clamp-2" x-text="post.excerpt"></p>
+							<div class="text-gray-10 flex items-center gap-1 text-xs my-3">
+								<CalendarIcon class="size-4" />
+								<span x-text="formatDate(post.date)"></span>
+							</div>
+							<a
+								:href="formatBlogUrl({ id: post.id, title: post.title })"
+								class="inline-block text-custom-brown font-medium hover:underline"
+								>Read more</a
+							>
+						</div>
+					</div>
+				</template>
+			</div>
+		</template>
+
+		<template x-if="filteredPosts.length === 0">
+			<div class="text-center py-16">
+				<h2 class="text-xl font-medium mb-2">No posts found</h2>
+				<p class="text-gray-11">Try adjusting your search or filter criteria</p>
+			</div>
+		</template>
+	</div>
+</Layout>
+
+<script>
+	import Alpine from "alpinejs";
+	import type { z } from "astro:content";
+	import type { blogPostSchema } from "../content.config";
+
+	declare global {
+		interface Window {
+			blogPostsData: {
+				posts: z.infer<typeof blogPostSchema>[];
+			};
+		}
+	}
+
+	document.addEventListener("alpine:init", () => {
+		Alpine.data("blogApp", () => ({
+			category: "All",
+			searchTerm: "",
+			allPosts: window.blogPostsData.posts,
+			get filteredPosts() {
+				let posts = this.allPosts as z.infer<typeof blogPostSchema>[];
+
+				if (this.category !== "All") {
+					posts = posts.filter((p) => {
+						const matches =
+							p.category.toLowerCase() === this.category.toLowerCase();
+						return matches;
+					});
+				}
+
+				if (this.searchTerm) {
+					const term = this.searchTerm.toLowerCase();
+					posts = posts.filter(
+						(p) =>
+							p.title.toLowerCase().includes(term) ||
+							p.excerpt.toLowerCase().includes(term) ||
+							(p.tags && p.tags.some((t) => t.toLowerCase().includes(term))),
+					);
+				}
+
+				return posts;
+			},
+			formatDate(dateStr: string) {
+				return new Date(dateStr).toLocaleDateString("en-US", {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				});
+			},
+			formatBlogUrl({ id, title }: { id: string; title: string }) {
+				const titleFormatted = title
+					.toLowerCase()
+					.replaceAll(" ", "-")
+					.replace(/[^\w-]+/g, "");
+
+				return `/blog/${id}/${titleFormatted}`;
+			},
+		}));
+	});
+</script>

@@ -1,0 +1,156 @@
+---
+import { getCollection } from "astro:content";
+import { getButtonClass } from "../../../components/Button/getButtonClass";
+import { CalendarDaysIcon, CalendarIcon } from "../../../components/Icons";
+import { ArrowLeftIcon, TagIcon } from "../../../components/Icons";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+	const blogPosts = await getCollection("blog");
+
+	return blogPosts.map((post) => {
+		const titleFormatted = post.data.title
+			.toLowerCase()
+			.replaceAll(" ", "-")
+			.replace(/[^\w-]+/g, "");
+
+		return {
+			params: {
+				id: post.data.id,
+				title: titleFormatted,
+			},
+			props: { post },
+		};
+	});
+}
+
+function formatBlogUrl({ id, title }: { id: number; title: string }) {
+	return `/blog/${id}/${title
+		.toLowerCase()
+		.replaceAll(" ", "-")
+		.replace(/[^\w-]+/g, "")}`;
+}
+
+const { params } = Astro;
+const blogPosts = await getCollection("blog");
+const post = blogPosts.find((p) => p.data.id === Number(params.id));
+const relatedPosts = post
+	? blogPosts
+			.filter(
+				(p) =>
+					p.id !== post.id &&
+					(p.data.category === post.data.category ||
+						p.data.tags.some((tag) => post.data.tags.includes(tag))),
+			)
+			.slice(0, 2)
+	: [];
+---
+
+<Layout
+	title={post
+		? `${post.data.title} - The Cookie Cottage`
+		: "Post - The Cookie Cottage"}
+>
+	{
+		post ? (
+			<div class="container mx-auto px-4 py-12">
+				<a
+					href="/blog"
+					class={`${getButtonClass({ variant: "ghost", size: "sm" })}`}
+				>
+					<ArrowLeftIcon class="mr-2 size-4" />
+					Back to Blog
+				</a>
+				<div class="max-w-4xl mx-auto">
+					<div class="flex items-center gap-2 text-sm text-gray-10 mb-4">
+						<span class="bg-accent-2 text-custom-brown px-3 py-1 rounded-full text-sm font-medium">
+							{post.data.category.charAt(0).toUpperCase() +
+								post.data.category.slice(1)}
+						</span>
+					</div>
+
+					<h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-custom-brown mb-6 leading-tight">
+						{post.data.title}
+					</h1>
+
+					<div class="flex flex-wrap items-center text-sm text-gray-10 gap-6 mb-8">
+						<div class="flex items-center gap-2">
+							<CalendarIcon class="size-4" />
+							<span>
+								{new Date(post.data.date).toLocaleDateString("en-US", {
+									month: "long",
+									day: "numeric",
+									year: "numeric",
+								})}
+							</span>
+						</div>
+					</div>
+
+					<div
+						class="h-96 w-full bg-cover bg-center rounded-lg mb-8"
+						style={`background-image: url('${post.data.imageUrl}')`}
+					/>
+
+					<div
+						class="prose prose-lg max-w-none text-gray-12 space-y-4 text-pretty"
+						set:html={post.rendered?.html}
+					/>
+
+					<div class="bg-gray-4 my-8 w-full h-px" />
+
+					<div class="flex flex-wrap gap-2 mb-8">
+						{post.data.tags.map((tag) => (
+							<div class="bg-gray-2 px-3 py-1 rounded-full text-sm text-gray-11 flex items-center gap-1">
+								<TagIcon class="size-3" />
+								<span>{tag}</span>
+							</div>
+						))}
+					</div>
+
+					<div class="bg-accent-2 p-6 rounded-lg">
+						<h2 class="text-xl font-bold text-custom-brown mb-4">
+							Related Posts
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							{relatedPosts.length > 0 ? (
+								relatedPosts.map((relatedPost) => (
+									<div class="bg-white p-4 rounded-lg hover:shadow-md transition-shadow">
+										<h3 class="font-bold text-custom-brown mb-2">
+											{relatedPost.data.title}
+										</h3>
+										<p class="text-gray-11 text-sm mb-3 line-clamp-2">
+											{relatedPost.data.excerpt}
+										</p>
+										<a
+											href={formatBlogUrl({
+												id: relatedPost.data.id,
+												title: relatedPost.data.title,
+											})}
+											class="inline-block text-custom-brown font-medium hover:underline"
+										>
+											Read more
+										</a>
+									</div>
+								))
+							) : (
+								<span>No related posts found.</span>
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		) : (
+			<div class="container mx-auto px-4 py-32 text-center">
+				<h1 class="text-4xl font-bold text-custom-brown mb-4">
+					Post Not Found
+				</h1>
+				<p class="text-gray-11 mb-8">
+					The blog post you're looking for doesn't exist or has been removed.
+				</p>
+				<a href="/blog" class={getButtonClass({ variant: "solid" })}>
+					Back to Blog
+				</a>
+			</div>
+		)
+	}
+</Layout>

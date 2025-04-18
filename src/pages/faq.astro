@@ -1,0 +1,175 @@
+---
+import { getButtonClass } from "../components/Button/getButtonClass";
+import { ChevronDownIcon, ChevronUpIcon } from "../components/Icons";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="FAQ - The Cookie Cottage">
+	<section class="py-16 px-4" x-data="faqComponent">
+		<div class="container mx-auto max-w-4xl">
+			<h1
+				class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+			>
+				How Can We Help?
+			</h1>
+			<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+			<div
+				class="flex mx-auto mb-12 w-fit gap-1 bg-gray-2 border border-gray-3 rounded-lg p-1"
+			>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="activeCategory === 'Ordering' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="activeCategory = 'Ordering'"
+				>
+					Ordering
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="activeCategory === 'Products' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="activeCategory = 'Products'"
+				>
+					Products
+				</button>
+				<button
+					type="button"
+					class="px-3 py-2 rounded-lg transition-colors"
+					:class="activeCategory === 'Events' ? 'bg-accent-9 text-accent-contrast' : 'text-gray-11 hover:bg-gray-3'"
+					@click="activeCategory = 'Events'"
+				>
+					Events
+				</button>
+			</div>
+			<template x-for="item in faqData[activeCategory]" :key="item.question">
+				<div class="border mb-1 border-gray-3 rounded-lg overflow-hidden">
+					<button
+						class="w-full flex justify-between items-center p-4 text-left bg-gray-1 hover:bg-gray-2 transition-colors"
+						@click="toggle(item.question)"
+					>
+						<span class="font-medium text-custom-brown" x-text="item.question"
+						></span>
+						<ChevronUpIcon
+							x-show="isExpanded(item.question)"
+							class="size-5 text-gray-9"
+						/>
+						<ChevronDownIcon
+							x-show="!isExpanded(item.question)"
+							class="size-5 text-gray-9"
+						/>
+					</button>
+
+					<div
+						x-show="isExpanded(item.question)"
+						x-collapse
+						class="p-4 bg-gray-50 border-t border-gray-200"
+					>
+						<p class="text-gray-11" x-text="item.answer"></p>
+					</div>
+				</div>
+			</template>
+
+			<div class="mt-16 text-center bg-custom-beige p-8 rounded-lg">
+				<h2 class="text-2xl font-handwritten font-bold text-custom-brown mb-4">
+					Still Have Questions?
+				</h2>
+				<p class="text-gray-11 mb-6">
+					We're here to help! Reach out to us directly and we'll get back to you
+					as soon as possible.
+				</p>
+				<a href="/contact" class={getButtonClass({ variant: "solid" })}>
+					Contact Us
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	import Alpine from "alpinejs";
+
+	document.addEventListener("alpine:init", () => {
+		Alpine.data("faqComponent", () => ({
+			activeCategory: "Ordering",
+			expanded: new Set(),
+			faqData: {
+				Ordering: [
+					{
+						question: "How far in advance should I place my order?",
+						answer:
+							"We recommend placing standard orders at least 1 week in advance. For custom decorated cookies, large orders (5+ dozen), or special events, please allow 3+ weeks notice.",
+					},
+					{
+						question: "Do you deliver?",
+						answer:
+							"We offer local delivery within a 15-mile radius for a fee based on distance. We can also arrange shipping for certain items. Please contact us for details.",
+					},
+					{
+						question: "Can I cancel or modify my order?",
+						answer:
+							"Orders can be modified or canceled up to 48 hours before the scheduled pickup or delivery time. Custom orders that have already begun production cannot be refunded.",
+					},
+					{
+						question: "What payment methods do you accept?",
+						answer:
+							"We accept credit/debit cards, cash, and mobile payment options like Apple Pay and Google Pay.",
+					},
+				],
+				Products: [
+					{
+						question: "Are your products made fresh?",
+						answer:
+							"Yes! All of our treats are baked fresh to order. We don't keep a large inventory of pre-made items to ensure you receive the freshest possible products.",
+					},
+					{
+						question: "Can you accommodate dietary restrictions?",
+						answer:
+							"We offer some gluten-free and dairy-free options, but our kitchen does process allergens like nuts, wheat, dairy, and eggs. Please contact us to discuss your specific needs.",
+					},
+					{
+						question: "How long do your cookies and cupcakes stay fresh?",
+						answer:
+							"Our cookies stay fresh for 5-7 days when stored in an airtight container at room temperature. Cupcakes are best enjoyed within 2-3 days and should be refrigerated if they contain cream cheese frosting.",
+					},
+					{
+						question: "Do you use artificial colors or flavors?",
+						answer:
+							"We strive to use natural ingredients whenever possible, but some of our decorations do contain food coloring. Please let us know if you have specific concerns.",
+					},
+				],
+				Events: [
+					{
+						question: "What types of events do you host?",
+						answer:
+							"We host cookie and cupcake decorating parties, baking workshops, birthday parties, and team-building events. Our space can accommodate groups of up to 15 people.",
+					},
+					{
+						question: "How much do decorating workshops cost?",
+						answer:
+							"Our standard workshops start at $35 per person, which includes all supplies and 6 cookies or 4 cupcakes to decorate. Private events and parties have custom pricing based on your needs.",
+					},
+					{
+						question: "Do you offer gift boxes or corporate gifts?",
+						answer:
+							"Yes! We create custom gift boxes for holidays, special occasions, and corporate gifting. Branded packaging is also available for business orders.",
+					},
+					{
+						question: "Can I bring my own decorations for a party?",
+						answer:
+							"Yes, you're welcome to bring your own decorations for the party space. We ask that you avoid loose glitter and confetti for cleanliness reasons.",
+					},
+				],
+			},
+			toggle(question: string) {
+				if (this.expanded.has(question)) {
+					this.expanded.delete(question);
+				} else {
+					this.expanded.add(question);
+				}
+			},
+			isExpanded(question: string) {
+				return this.expanded.has(question);
+			},
+		}));
+	});
+</script>

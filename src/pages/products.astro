@@ -1,0 +1,196 @@
+---
+import { getButtonClass } from "../components/Button/getButtonClass";
+import ProductCard from "../components/ProductCard.astro";
+import Layout from "../layouts/Layout.astro";
+
+const allProducts = [
+	{
+		image: "/images/placeholder-chocolate-chip-cookies.png",
+		name: "Chocolate Chip Cookies",
+		description:
+			"Our classic recipe with semi-sweet chocolate chips and a touch of sea salt.",
+		price: "$12/dozen",
+		category: "Cookies",
+	},
+	{
+		image: "/images/placeholder-decorated-sugar-cookies.png",
+		name: "Decorated Sugar Cookies",
+		description:
+			"Hand-decorated sugar cookies with royal icing for any season or event.",
+		price: "$24/dozen",
+		category: "Cookies",
+	},
+	{
+		image: "/images/placeholder-oatmeal-raisin-cookies.png",
+		name: "Oatmeal Raisin Cookies",
+		description:
+			"Chewy oatmeal cookies packed with raisins and a hint of cinnamon.",
+		price: "$12/dozen",
+		category: "Cookies",
+	},
+	{
+		image: "/images/placeholder-double-chocolate-chip-cookies.png",
+		name: "Double Chocolate Cookies",
+		description:
+			"Rich chocolate cookies with chocolate chips for the ultimate chocolate lover.",
+		price: "$14/dozen",
+		category: "Cookies",
+	},
+
+	{
+		image: "/images/placeholder-birthday-cupcakes.png",
+		name: "Birthday Cupcakes",
+		description:
+			"Vanilla cupcakes with colorful buttercream frosting and sprinkles.",
+		price: "$18/half-dozen",
+		category: "Cupcakes",
+	},
+	{
+		image: "/images/placeholder-chocolate-cupcakes.png",
+		name: "Chocolate Cupcakes",
+		description:
+			"Moist chocolate cupcakes topped with chocolate buttercream frosting.",
+		price: "$18/half-dozen",
+		category: "Cupcakes",
+	},
+	{
+		image: "/images/placeholder-red-velvet-cupcakes.png",
+		name: "Red Velvet Cupcakes",
+		description: "Classic red velvet cupcakes with cream cheese frosting.",
+		price: "$20/half-dozen",
+		category: "Cupcakes",
+	},
+	{
+		image: "/images/placeholder-seasonal-cupcakes.png",
+		name: "Seasonal Cupcakes",
+		description:
+			"Special flavors and decorations that change with the seasons.",
+		price: "$20/half-dozen",
+		category: "Cupcakes",
+	},
+
+	{
+		image: "/images/placeholder-cookie-cake.png",
+		name: "Cookie Cake",
+		description:
+			"Giant chocolate chip cookie cake that can be personalized with a message.",
+		price: "$30",
+		category: "Specialty",
+	},
+	{
+		image: "/images/placeholder-cookie-decorating-kit.png",
+		name: "Cookie Decorating Kit",
+		description:
+			"Plain sugar cookies with icing and decorations to create at home.",
+		price: "$28",
+		category: "Specialty",
+	},
+	{
+		image: "/images/placeholder-brownie-box.png",
+		name: "Brownie Box",
+		description:
+			"Assorted brownies including chocolate, blondie, and peanut butter varieties.",
+		price: "$22/dozen",
+		category: "Specialty",
+	},
+	{
+		image: "/images/placeholder-holiday-gift-box.png",
+		name: "Holiday Gift Box",
+		description:
+			"Seasonal selection of cookies and treats in a beautiful gift box.",
+		price: "$40",
+		category: "Specialty",
+	},
+];
+---
+
+<Layout title="Products - The Cookie Cottage">
+	<div x-data="{ activeCategory: 'All' }">
+		<!-- Products -->
+		<section class="py-16 px-4">
+			<div class="container mx-auto">
+				<h1
+					class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+				>
+					Delicious Treats
+				</h1>
+				<div class="w-24 h-1 bg-custom-brown mx-auto mb-6 rounded-full"></div>
+				<p class="text-center max-w-3xl mx-auto mb-12">
+					All of our treats are made from scratch using quality ingredients.
+					Browse some our selection below, and contact us for custom orders or
+					special requests.
+				</p>
+
+				<div class="flex justify-center mb-12">
+					<div
+						class="inline-flex gap-1 bg-gray-2 border border-gray-3 rounded-lg p-1"
+					>
+						<button
+							type="button"
+							class="px-3 py-2 rounded-lg transition-colors"
+							:class="activeCategory === 'All' ? 'bg-accent-9 text-accent-contrast' : 'hover:bg-gray-3'"
+							@click="activeCategory = 'All'"
+						>
+							All
+						</button>
+						<button
+							type="button"
+							class="px-3 py-2 rounded-lg transition-colors"
+							:class="activeCategory === 'Cookies' ? 'bg-accent-9 text-accent-contrast' : 'hover:bg-gray-3'"
+							@click="activeCategory = 'Cookies'"
+						>
+							Cookies
+						</button>
+						<button
+							type="button"
+							class="px-3 py-2 rounded-lg transition-colors"
+							:class="activeCategory === 'Cupcakes' ? 'bg-accent-9 text-accent-contrast' : 'hover:bg-gray-3'"
+							@click="activeCategory = 'Cupcakes'"
+						>
+							Cupcakes
+						</button>
+						<button
+							type="button"
+							class="px-3 py-2 rounded-lg transition-colors"
+							:class="activeCategory === 'Specialty' ? 'bg-accent-9 text-accent-contrast' : 'hover:bg-gray-3'"
+							@click="activeCategory = 'Specialty'"
+						>
+							Specialty
+						</button>
+					</div>
+				</div>
+
+				<!-- Products Grid -->
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					{
+						allProducts.map((product) => (
+							<div
+								x-show={`activeCategory === 'All' || activeCategory === '${product.category}'`}
+								x-transition
+							>
+								<ProductCard {...product} />
+							</div>
+						))
+					}
+				</div>
+
+				<!-- CTA -->
+				<div class="mt-16 text-center">
+					<h1
+						class="text-2xl font-handwritten font-bold text-custom-brown mb-4"
+					>
+						Looking for Something Special?
+					</h1>
+					<p class="mb-6 max-w-2xl mx-auto">
+						We love creating custom treats for special occasions! Contact us to
+						discuss your ideas and we'll work together to make your sweet dreams
+						come true.
+					</p>
+					<a href="/contact" class={getButtonClass({ variant: "solid" })}>
+						Request Custom Order
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>

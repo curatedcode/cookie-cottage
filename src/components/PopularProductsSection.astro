@@ -1,0 +1,65 @@
+---
+import { getButtonClass } from "./Button/getButtonClass";
+import ProductCard from "./ProductCard.astro";
+
+const popularProducts = [
+	{
+		image:
+			"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=2070",
+		name: "Chocolate Chip Cookies",
+		description:
+			"Our classic recipe with semi-sweet chocolate chips and a touch of sea salt.",
+		price: "$12/dozen",
+		category: "Cookies",
+	},
+	{
+		image:
+			"https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?q=80&w=2080",
+		name: "Birthday Cupcakes",
+		description:
+			"Vanilla cupcakes with colorful buttercream frosting and sprinkles.",
+		price: "$18/half-dozen",
+		category: "Cupcakes",
+	},
+	{
+		image:
+			"https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?q=80&w=2068",
+		name: "Seasonal Sugar Cookies",
+		description:
+			"Hand-decorated sugar cookies with royal icing for any season or event.",
+		price: "$24/dozen",
+		category: "Specialty",
+	},
+];
+---
+
+<section class="py-16 px-4">
+	<div class="container mx-auto">
+		<h2
+			class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+		>
+			Featured Treats
+		</h2>
+		<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			{
+				popularProducts.map((product) => (
+					<ProductCard
+						image={product.image}
+						name={product.name}
+						description={product.description}
+						price={product.price}
+						category={product.category}
+					/>
+				))
+			}
+		</div>
+
+		<div class="text-center mt-12">
+			<a href="/products" class={getButtonClass({ variant: "outline" })}>
+				View All Products
+			</a>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+---
+interface Props {
+	image: string;
+	name: string;
+	role: string;
+	bio: string;
+}
+
+const { image, name, role, bio } = Astro.props;
+---
+
+<div class="text-center">
+	<div
+		class="w-48 h-48 mx-auto rounded-full bg-cover bg-center mb-4 border-4 border-accent-2"
+		style={{ backgroundImage: `url(${image})` }}
+	>
+	</div>
+	<h3 class="text-xl font-handwritten font-bold text-custom-brown">{name}</h3>
+	<p class="text-sm text-gray-10 mb-3">{role}</p>
+	<p>{bio}</p>
+</div>

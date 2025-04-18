@@ -1,0 +1,131 @@
+---
+import { getButtonClass } from "./Button/getButtonClass";
+---
+
+<div
+	x-data="carousel"
+	x-init="startAutoAdvance()"
+	class="relative h-[500px] md:h-[600px] overflow-hidden"
+>
+	<!-- Slides -->
+	<template x-for="(slide, index) in slides" :key="index">
+		<div
+			x-show="current === index"
+			x-transition:enter="transition-opacity duration-1000 ease-in-out"
+			x-transition:enter-start="opacity-0"
+			x-transition:enter-end="opacity-100"
+			x-transition:leave="transition-opacity duration-1000 ease-in-out"
+			x-transition:leave-start="opacity-100"
+			x-transition:leave-end="opacity-0"
+			class="absolute inset-0"
+		>
+			<div
+				class="absolute inset-0 bg-cover bg-center"
+				:style="`background-image: url(${slide.image})`"
+			>
+				<div class="absolute inset-0 bg-black opacity-40"></div>
+			</div>
+
+			<div
+				class="relative h-full flex items-center justify-center text-center px-4"
+			>
+				<div class="max-w-3xl">
+					<h1
+						class="text-5xl md:text-6xl font-handwritten font-bold text-transparent bg-clip-text mb-4 animate-float bg-gradient-to-b from-white via-white to-accent-6"
+						x-text="slide.title"
+					>
+					</h1>
+					<p
+						class="text-2xl font-handwritten md:text-3xl text-white mb-8"
+						x-text="slide.description"
+					>
+					</p>
+					<a href="/products" class=`${getButtonClass({ variant: "solid" })} `>
+						Explore Our Treats
+					</a>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<!-- Dots -->
+	<div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+		<template x-for="(slide, index) in slides" :key="index">
+			<button
+				@click="goToSlide(index)"
+				:class="{'size-3 rounded-full bg-white opacity-70': current === index, 'size-3 rounded-full bg-white opacity-35': current !== index}"
+			>
+				<span class="sr-only">Go to slide</span>
+			</button>
+		</template>
+	</div>
+</div>
+
+<script>
+	import Alpine from "alpinejs";
+
+	type CarouselData = {
+		current: number;
+		slides: { image: string; title: string; description: string }[];
+		timer: NodeJS.Timeout | undefined;
+		nextSlide: () => void;
+		prevSlide: () => void;
+		goToSlide: (val: number) => void;
+		startAutoAdvance: () => void;
+		restartAutoAdvance: () => void;
+	};
+
+	document.addEventListener("alpine:init", () => {
+		Alpine.data(
+			"carousel",
+			(): CarouselData => ({
+				current: 0,
+				slides: [
+					{
+						image: "/images/showcase-fb-cookies.png",
+						title: "Freshly Baked",
+						description: "Handcrafted with love and the finest ingredients",
+					},
+					{
+						image: "/images/showcase-b-cookies.png",
+						title: "Special Occasion",
+						description: "Beautiful treats for every occasion",
+					},
+					{
+						image: "/images/showcase-m-cookies.png",
+						title: "Custom Design",
+						description: "Personalized for your special events",
+					},
+				],
+				timer: undefined,
+
+				nextSlide() {
+					this.current = (this.current + 1) % this.slides.length;
+					this.restartAutoAdvance();
+				},
+
+				prevSlide() {
+					this.current =
+						(this.current - 1 + this.slides.length) % this.slides.length;
+					this.restartAutoAdvance();
+				},
+
+				goToSlide(index: number) {
+					this.current = index;
+					this.restartAutoAdvance();
+				},
+
+				startAutoAdvance() {
+					this.timer = setInterval(() => {
+						this.nextSlide();
+					}, 5000);
+				},
+
+				restartAutoAdvance() {
+					clearInterval(this.timer);
+					this.startAutoAdvance();
+				},
+			}),
+		);
+	});
+</script>

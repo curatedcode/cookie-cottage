@@ -1,0 +1,134 @@
+---
+import {
+	DevicePhoneMobileIcon,
+	FacebookIcon,
+	InstagramIcon,
+	MailIcon,
+	MapPinIcon,
+	PhoneIcon,
+} from "./Icons";
+---
+
+<footer class="bg-custom-beige mt-16 pt-12 pb-6">
+	<div class="container mx-auto px-4">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<div>
+				<div class="text-2xl font-handwritten font-bold text-custom-brown mb-4">
+					The Cookie Cottage
+				</div>
+				<p class="mb-4">
+					Crafting delicious homemade cookies, cupcakes, and treats for all
+					occasions.
+				</p>
+				<div class="flex space-x-4">
+					<a
+						href="https://www.facebook.com/thecookiecottageflorida"
+						class="hover:text-custom-brown"
+					>
+						<FacebookIcon aria-hidden="true" />
+						<span class="sr-only">Facebook</span>
+					</a>
+					<a
+						href="mailto:cathy@thecookiecottageflorida.com"
+						class="hover:text-custom-brown"
+					>
+						<MailIcon aria-hidden="true" />
+						<span class="sr-only">Email address</span>
+					</a>
+				</div>
+			</div>
+
+			<div>
+				<div class="text-xl font-handwritten font-bold text-custom-brown mb-4">
+					Quick Links
+				</div>
+				<ul class="space-y-2">
+					<li>
+						<a href="/" class="hover:text-custom-brown transition-colors"
+							>Home</a
+						>
+					</li>
+					<li>
+						<a href="/about" class="hover:text-custom-brown transition-colors"
+							>About Us</a
+						>
+					</li>
+					<li>
+						<a
+							href="/products"
+							class="hover:text-custom-brown transition-colors">Products</a
+						>
+					</li>
+					<li>
+						<a href="/blog" class="hover:text-custom-brown transition-colors"
+							>Blog</a
+						>
+					</li>
+					<li>
+						<a href="/contact" class="hover:text-custom-brown transition-colors"
+							>Order/Contact</a
+						>
+					</li>
+					<li>
+						<a href="/faq" class="hover:text-custom-brown transition-colors"
+							>FAQ</a
+						>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<div class="text-xl font-handwritten font-bold text-custom-brown mb-4">
+					Contact Information
+				</div>
+				<div class="space-y-8">
+					<div class="space-y-3">
+						<div class="flex items-center space-x-3">
+							<MapPinIcon
+								class="text-custom-brown flex-shrink-0 size-6 mt-1"
+								aria-hidden="true"
+							/>
+							<span>335 Gillespie Ave, Sarasota, FL 34236</span>
+						</div>
+						<div class="flex items-center space-x-3">
+							<PhoneIcon
+								class="text-custom-brown flex-shrink-0 size-6"
+								aria-hidden="true"
+							/>
+							<span>(941) 993-0671</span>
+						</div>
+						<div class="flex items-center space-x-3">
+							<DevicePhoneMobileIcon
+								class="text-custom-brown flex-shrink-0 size-6"
+								aria-hidden="true"
+							/>
+							<span>(941) 552-6914</span>
+						</div>
+						<div class="flex items-center space-x-3">
+							<MailIcon
+								class="text-custom-brown flex-shrink-0 size-6"
+								aria-hidden="true"
+							/>
+							<span>cathy@thecookiecottageflorida.com</span>
+						</div>
+					</div>
+					<div>
+						<div
+							class="font-bold font-handwritten text-custom-brown mb-1 text-xl"
+						>
+							Hours:
+						</div>
+						<p>Monday - Saturday: 9am - 5pm</p>
+						<p>Sunday: Closed</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="border-t border-gray-5 mt-8 pt-8 text-center text-gray-11">
+			<p>
+				&copy; {new Date().getFullYear()} The Cookie Cottage. All rights reserved.
+			</p>
+		</div>
+	</div>
+</footer>

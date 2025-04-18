@@ -1,11 +1,54 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getButtonClass } from "../components/Button/getButtonClass";
+import HeroCarousel from "../components/HeroCarousel.astro";
+import PopularProductsSection from "../components/PopularProductsSection.astro";
+import ServicesSection from "../components/ServicesSection.astro";
+import TestimonialSection from "../components/TestimonialSection.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="The Cookie Cottage">
+	<HeroCarousel />
+	<section class="py-16 px-4">
+		<div class="container mx-auto max-w-4xl text-center">
+			<h2
+				class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl"
+			>
+				Welcome to The Cookie Cottage
+			</h2>
+			<div class="w-24 h-1 bg-custom-brown mx-auto mb-8 rounded-full"></div>
+			<p class="text-lg md:text-xl mb-8 leading-relaxed">
+				At The Cookie Cottage, we believe in creating more than just delicious
+				treats. We craft experiences, celebrations, and memories through our
+				homemade cookies, cupcakes, and specialty desserts. Each item is made
+				with love using only the finest ingredients, family recipes, and a dash
+				of magic.
+			</p>
+			<p class="text-lg md:text-xl leading-relaxed">
+				Whether you're looking for a sweet treat, planning a special event, or
+				want to learn the art of cookie decorating, our cottage doors are open
+				to welcome you into our world of sweetness.
+			</p>
+		</div>
+	</section>
+	<ServicesSection />
+	<PopularProductsSection />
+	<TestimonialSection />
+
+	<section class="py-16 px-4">
+		<div class="container mx-auto text-center max-w-3xl">
+			<h2
+				class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl"
+			>
+				Ready to Order?
+			</h2>
+			<p class="text-lg mb-8">
+				Contact us to place your order for custom cookies, cupcakes, or to book
+				your next party!
+			</p>
+			<a href="/contact" class={getButtonClass({ variant: "solid" })}>
+				Place an Order
+			</a>
+		</div>
+	</section>
 </Layout>

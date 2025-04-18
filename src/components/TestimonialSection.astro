@@ -1,0 +1,65 @@
+---
+import { getButtonClass } from "./Button/getButtonClass";
+import TestimonialCard from "./TestimonialCard.astro";
+
+const testimonials = [
+	{
+		name: "Alicia P.",
+		quote:
+			"Best Place for a children's party! My daughter had her 4th birthday party there and it was a huge hit. Affordable, Fun, kids were engaged the whole time... Just perfect. We will definitely be back.",
+		rating: 5,
+		date: "September 13, 2021",
+	},
+	{
+		name: "Svetlana T.",
+		quote:
+			"It is SO cozy and beautiful space! ✨ But most of all - the warmest owner, Cathy. 💛",
+		rating: 5,
+		date: "February 28, 2025",
+	},
+	{
+		name: "Sarah C.",
+		quote:
+			"We had so much fun at The Cookie Cottage decorating sugar cookies for Christmas. They even had a gluten free option! The frostings were a range of beautiful colors and were easy to use. Our cookies turned out great!",
+		rating: 5,
+		date: "December 23, 2023",
+	},
+	{
+		name: "Kelly B.",
+		quote:
+			"Had special cow cookies made for niece's birthday. the attention to detail was amazing!!! Highly recommend for special occasions. Cookies taste great too!",
+		rating: 5,
+		date: "April 14, 2024",
+	},
+];
+---
+
+<section class="py-16 bg-accent-2 px-4">
+	<div class="container mx-auto">
+		<h2
+			class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+		>
+			What Our Customers Say
+		</h2>
+		<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+		<div>
+			<div class="relative max-w-5xl mx-auto">
+				<div class="grid gap-6 md:grid-cols-2">
+					{
+						testimonials.map((testimonial) => (
+							<div class="px-2">
+								<TestimonialCard {...testimonial} />
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center mt-10">
+			<a href="/contact" class={getButtonClass({ variant: "outline" })}>
+				Share Your Experience
+			</a>
+		</div>
+	</div>
+</section>

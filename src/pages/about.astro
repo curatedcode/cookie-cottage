@@ -1,0 +1,259 @@
+---
+import TeamMember from "../components/TeamMember.astro";
+import Layout from "../layouts/Layout.astro";
+
+const teamMembers = [
+	{
+		image:
+			"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070",
+		name: "Emma Baker",
+		role: "Owner & Head Baker",
+		bio: "Emma founded The Cookie Cottage in 2015 after years of baking for family and friends. Her passion for creating beautiful, delicious treats is at the heart of everything we do.",
+	},
+	{
+		image:
+			"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2070",
+		name: "David Miller",
+		role: "Pastry Chef",
+		bio: "With formal training in pastry arts, David brings creativity and technical expertise to our specialty desserts and custom designs.",
+	},
+	{
+		image:
+			"https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961",
+		name: "Sophie Chen",
+		role: "Decorator & Workshop Leader",
+		bio: "Sophie's artistic background shines through in her intricate cookie designs. She also leads our popular decorating workshops and parties.",
+	},
+];
+---
+
+<Layout title="About - The Cookie Cottage">
+	<div>
+		{/* Our Story Section */}
+		<section class="py-16 px-4">
+			<div class="container mx-auto max-w-4xl">
+				<h1
+					class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+				>
+					About The Cookie Cottage
+				</h1>
+				<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+
+				<div class="grid md:grid-cols-2 justify-items-center gap-8">
+					<img
+						src="/images/showcase-f-cookies.png"
+						alt="Bakery interior"
+						class="rounded-lg shadow-md"
+					/>
+					<div class="space-y-4 text-gray-12">
+						<p class="text-pretty">
+							The Cookie Cottage began in January 2012, when Cathy VandeMheen, a
+							former teacher, moved from Omaha to Sarasota and started a custom
+							cookie business from her home. By June 2013, her love for baking,
+							decorating, and working with children turned that hobby into a
+							full-time career. Cathy is also an active member of the LEADS Club
+							Florida — University Professional Women’s Chapter.
+						</p>
+						<p class="text-pretty">
+							Today, The Cookie Cottage is a cozy, creative space nestled in
+							Sarasota’s Historic Downtown Village, just off Fruitville Road and
+							one block west of Washington Boulevard (Hwy 301). Each business in
+							the Village is set in its own charming stand-alone cottage,
+							offering a truly welcoming experience.
+						</p>
+						<p class="text-pretty">
+							Join us for Fourth Fridays, when all the Village shops stay open
+							from 5&ndash;9 p.m. It's a perfect evening to explore and enjoy
+							our sweet little community.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-16 px-4 bg-accent-2">
+			<div class="container mx-auto max-w-4xl">
+				<h2
+					class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+				>
+					Our Values
+				</h2>
+				<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div
+						class="bg-white p-6 rounded-lg shadow-md text-center border border-gray-3"
+					>
+						<h3
+							class="text-xl font-handwritten font-bold text-custom-brown mb-3"
+						>
+							Quality Ingredients
+						</h3>
+						<p>
+							We use only the finest ingredients, sourcing locally whenever
+							possible to create treats that taste homemade.
+						</p>
+					</div>
+
+					<div
+						class="bg-white p-6 rounded-lg shadow-md text-center border border-gray-3"
+					>
+						<h3
+							class="text-xl font-handwritten font-bold text-custom-brown mb-3"
+						>
+							Community Connection
+						</h3>
+						<p>
+							We believe in building relationships with our customers and
+							supporting local community initiatives.
+						</p>
+					</div>
+
+					<div
+						class="bg-white p-6 rounded-lg shadow-md text-center border border-gray-3"
+					>
+						<h3
+							class="text-xl font-handwritten font-bold text-custom-brown mb-3"
+						>
+							Creativity & Joy
+						</h3>
+						<p>
+							We're passionate about creating products and experiences that
+							bring happiness and celebrate life's moments.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-16 px-4">
+			<div class="container mx-auto max-w-4xl">
+				<h2
+					class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+				>
+					The Road Less Traveled
+				</h2>
+				<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+
+				<p class="text-gray-12 text-xl font-medium mb-6">
+					Cathy’s daughter recently shared a heartfelt look at how her mom’s
+					path led to the creation of The Cookie Cottage in Sarasota, Florida...
+				</p>
+
+				<div class="space-y-4 text-gray-12">
+					<p class="text-pretty">
+						<span class="font-bold text-xl">&ldquo;</span>
+						Stepping foot inside the Florida-based home of Cathy Vande Mheen, one
+						would realize instantaneously that this unique, rambunctious woman has
+						a very particular passion, not a past life on the opposite end of the
+						spectrum. The first thing one might notice is the flour lightly dusting
+						her granite countertops, or maybe a second glance is taken and the realization
+						sets in of the scattered mixing bowls that are glazed with colored frosting.
+						No matter where someone would turn or what kind of presumptions one would
+						have, you can easily tell, through in and through out, that Cathy is
+						a cookie connoisseur with a knack for decorating.
+					</p>
+					<p class="text-pretty">
+						This brings us to the next topic: What kind of secret past does this
+						woman have? For starters, it was one known to many but most likely
+						never assumed by a stranger. It required patience, planning, and
+						careful execution so as not to harm someone’s future. It was
+						intricate work with tiring days and late nights. It was, as you may
+						have guessed, a life of teaching.
+					</p>
+					<p class="text-pretty">
+						Leading up to the creative frenzy of the baking life that Cathy now
+						lives, she began the slow process that eventually got her to today.
+						Back when she was deciding of what and who she wanted to become,
+						never in her wildest dreams was she an owner of a cookie company. In
+						fact, her ultimate goal was to become a teacher, something she
+						achieved very early on in life. She made the executive decision as a
+						second grader, mainly because of how nice her teacher had been, and
+						stuck to the plan. It probably helped that the majority of her
+						family was in the educational field as well, which ultimately pushed
+						her in that direction.
+					</p>
+
+					<p class="text-pretty">
+						Back in 2004, after years of being in the classroom, Cathy decided
+						the school setting wasn’t suiting her wants and needs, so she
+						started looking elsewhere for teaching jobs. Stumbling upon a very
+						unique job, much like herself, she knew it was an offer she couldn’t
+						refuse. The pay wasn’t the greatest, but how do you turn down a job
+						at the Henry Doorly Zoo? You don’t, Cathy realized. She became the
+						Camp Coordinator there for awhile, and would write curriculum for
+						different programs in her spare time. Although Cathy had always been
+						interested in baking, especially once her children were born, this
+						was a crucial year for her. She took her first cookie decorating
+						class, and that ultimately revved her up for the future. All she
+						wanted to do from that point forward was teach kids how to decorate
+						cookies. Luckily, being the camp coordinator, she was given the
+						opportunity to make thematic cookies for birthday parties the zoo
+						would host. Cathy absolutely loved it, but when the time came to
+						move on to bigger and better things, cookie decorating still wasn’t
+						on the list of potential careers, that is, until 2011 came along.
+					</p>
+					<p class="text-pretty">
+						It all started out one day a few years ago as Cathy was headed to
+						Florida for vacation. Being the talkative woman that she is, she
+						struck up a conversation with a woman sitting next to her on the
+						airplane, who happened to be going to meet her Realtor boyfriend
+						down in Siesta Key, the final destination. The two got to discussing
+						how great Florida was and eventually the conversation got Cathy to
+						thinking. She realized there was so much more to life and went out
+						on a limb, deciding to move to Florida with the help of her new
+						realtor friend. From there, she attained her license to bake out of
+						her home, and her new journey began with her first customer and
+						friend. From there, she began the strenuous path down the road to
+						the Cookie Cottage.
+					</p>
+					<p class="text-pretty">
+						Taking a look back at Cathy’s kitchen and lifestyle, you would have
+						never known that she was once a very calm, cool, and collected
+						teacher. She definitely has the capabilities, but the cookie
+						business is a very messy, fast-paced industry that she is
+						single-handedly trying to dominate. This got me to wondering just
+						how successful Florida was panning out to be. According to her,
+						everything seems to be coming along quite nicely, contrary to what I
+						believed. “The particular area I live in is booming with visitors.
+						In fact, Siesta Key reported their best year ever in tourism.”
+						Although walk-by traffic helps tremendously, it’s not enough to keep
+						her head above water. For this reason, Cathy had to make a strong
+						customer base, which is exactly what she did.
+					</p>
+					<p class="text-pretty">
+						Today, I now stand in the kitchen of a locally renowned cookie
+						decorator in the Siesta Key, Florida area. Business is really
+						starting to pick up, mostly from the friendly faces around town and
+						word of mouth from networking groups. Cathy can only hope that once
+						her actual business, The Cookie Cottage, is opened by the end of the
+						month, employees will be needed to help out with the rush of new
+						clientele. Seeing as we’ve all been students, I’m sure everyone is
+						pretty aware that a teacher has to wake up early, teach all day,
+						stay after to help students, and ultimately take their work home
+						with them. It is a very tiring job with long hours, but worth it in
+						the eyes of a growing child. You’d think Cathy would have traded up
+						in the aspect of less hours and less work, but as we all know, the
+						cookies can’t make themselves. 6 a.m. wake up call, prepare cooking
+						utensils, grab a cup of coffee, spend the day rolling and cutting
+						out cookies, prepare frosting, clean up, get ready for the next day,
+						done by 4. Just listening to the long days she has when baking
+						stressed me out, so I asked how she handled it all. “It’s funny
+						because I’ve always handled stress by baking. It helps me to
+						concentrate, and sometimes it just helps me to stop thinking about
+						everything else.”
+					</p>
+					<p class="text-pretty">
+						Cathy has lived an adventurous life, but the real adventure is only
+						beginning. As you can see from the two lives this remarkable woman
+						has experienced, sometimes people are destined for greater things in
+						their life than what they originally set out to do. Thankfully my
+						mother, Cathy Vande Mheen, is one of the lucky few that was given
+						the chance and is now making her way down that path.
+						<span class="font-bold text-xl">&rdquo;</span>
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>

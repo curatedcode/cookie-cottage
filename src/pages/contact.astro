@@ -1,0 +1,130 @@
+---
+import ContactForm from "../components/ContactForm.astro";
+import { CalendarDaysIcon } from "../components/Icons";
+import { DevicePhoneMobileIcon } from "../components/Icons";
+import {
+	CalendarIcon,
+	ClockIcon,
+	MailIcon,
+	MapPinIcon,
+	PhoneIcon,
+} from "../components/Icons";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact Us - The Cookie Cottage">
+	<section class="py-16 px-4">
+		<div class="container mx-auto">
+			<div class="max-w-5xl mx-auto">
+				<h1
+					class="text-4xl font-handwritten font-bold text-custom-brown mb-6 md:text-5xl text-center"
+				>
+					Get In Touch
+				</h1>
+				<div class="w-24 h-1 bg-custom-brown mx-auto mb-12 rounded-full"></div>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+					<div class="space-y-4">
+						<div>
+							<h2
+								class="text-2xl font-handwritten font-bold text-custom-brown mb-4"
+							>
+								We'd Love to Hear From You!
+							</h2>
+							<p>
+								Whether you want to place an order, have questions about our
+								products, or want to book a special event, we're here to help.
+								Fill out the form or contact us directly using the information
+								below.
+							</p>
+						</div>
+						<div class="space-y-4">
+							<div class="flex items-start">
+								<MapPinIcon
+									class="text-custom-brown mr-3 flex-shrink-0 mt-1 size-6"
+								/>
+								<div>
+									<h3 class="font-medium">Location</h3>
+									<p>335 Gillespie Ave, Sarasota, FL 34236</p>
+								</div>
+							</div>
+							<div class="flex items-start">
+								<PhoneIcon
+									class="text-custom-brown mr-3 flex-shrink-0 mt-1 size-6"
+								/>
+								<div>
+									<h3 class="font-medium">Phone</h3>
+									<p>(941) 993-0671</p>
+								</div>
+								<div class="ml-8">
+									<h3 class="font-medium">Mobile</h3>
+									<p>(941) 552-6914</p>
+								</div>
+							</div>
+							<div class="flex items-start">
+								<MailIcon
+									class="text-custom-brown mr-3 flex-shrink-0 mt-1 size-6"
+								/>
+								<div>
+									<h4 class="font-medium">Email</h4>
+									<p>cathy@thecookiecottageflorida.com</p>
+								</div>
+							</div>
+							<div class="flex items-start">
+								<ClockIcon
+									class="text-custom-brown mr-3 flex-shrink-0 mt-1 size-6"
+								/>
+								<div>
+									<h3 class="font-medium">Hours</h3>
+									<p>Monday - Saturday: 9am - 5pm</p>
+									<p>Sunday: Closed</p>
+								</div>
+							</div>
+						</div>
+						<div class="bg-accent-2 bg-opacity-30 p-6 rounded-lg">
+							<h2
+								class="font-handwritten font-bold text-lg text-custom-brown mb-3 flex items-center"
+							>
+								<CalendarDaysIcon class="mr-2 size-6" /> Order Lead Times
+							</h2>
+							<ul class="list-disc list-inside space-y-2">
+								<li>Standard cookies/cupcakes: 1 week notice</li>
+								<li>Custom decorated cookies: 3 weeks notice</li>
+								<li>Large orders (5+ dozen): 3 weeks notice</li>
+								<li>Special events/parties: 3 weeks notice</li>
+							</ul>
+						</div>
+					</div>
+					<div class="bg-white p-8 rounded-lg shadow-md border border-gray-3">
+						<h2
+							class="text-2xl font-handwritten font-bold text-custom-brown mb-4 text-center"
+						>
+							Order Request
+						</h2>
+						<ContactForm />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="py-8 px-4 mt-8">
+		<div class="container mx-auto max-w-5xl grid sm:grid-cols-2 gap-6">
+			<div
+				class="bg-gray-3 h-[400px] rounded-lg flex items-center justify-center px-6"
+			>
+				<div class="text-center">
+					<h2 class="text-xl font-medium mb-2">Map Placeholder</h2>
+					<p class="text-gray-11">
+						In a launched site, your interactive google map would be displayed
+						here.
+					</p>
+				</div>
+			</div>
+			<img
+				src="/images/location.png"
+				alt="Bakery street view"
+				class="rounded-lg shadow-md h-full"
+			/>
+		</div>
+	</section>
+</Layout>

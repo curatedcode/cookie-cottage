@@ -1,0 +1,35 @@
+---
+import { getButtonClass } from "./Button/getButtonClass";
+
+interface Props {
+	image: string;
+	name: string;
+	description: string;
+	price: string;
+	category: string;
+}
+
+const { image, name, description, price, category } = Astro.props;
+---
+
+<div
+	class="bg-white border border-gray-3 h-[28rem] rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 duration-300"
+>
+	<div
+		class="h-[55%] bg-cover bg-center"
+		style={{ backgroundImage: `url(${image})` }}
+	>
+	</div>
+	<div class="p-5 flex flex-col h-[45%]">
+		<span
+			class="inline-block w-fit px-3 py-1 text-xs font-medium bg-accent-2 rounded-full mb-3"
+		>
+			{category}
+		</span>
+		<h2 class="text-xl font-handwritten font-bold text-custom-brown mb-2">
+			{name}
+		</h2>
+		<p class="mb-3 text-sm line-clamp-2">{description}</p>
+		<span class="font-medium text-custom-brown mt-auto">{price}</span>
+	</div>
+</div>
