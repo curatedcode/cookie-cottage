@@ -4,10 +4,11 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev --port=3000 --host",
-		"build": "astro build",
+		"build": "lint && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"test": "playwright test"
+		"test": "playwright test",
+		"lint": "biome check --write ."
 	},
 	"dependencies": {
 		"@astrojs/alpinejs": "^0.4.5",
