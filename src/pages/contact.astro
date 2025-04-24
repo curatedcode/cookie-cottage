@@ -110,15 +110,16 @@ import Layout from "../layouts/Layout.astro";
 	<section class="py-8 px-4 mt-8">
 		<div class="container mx-auto max-w-5xl grid sm:grid-cols-2 gap-6">
 			<div
-				class="bg-gray-3 h-[400px] rounded-lg flex items-center justify-center px-6"
+				class="relative h-[400px] rounded-lg overflow-hidden bg-gray-3 w-full flex flex-col items-center justify-center"
 			>
-				<div class="text-center">
-					<h2 class="text-xl font-medium mb-2">Map Placeholder</h2>
-					<p class="text-gray-11">
-						In a launched site, your interactive google map would be displayed
-						here.
-					</p>
-				</div>
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3520.3363107646715!2d-82.53842952482205!3d27.41119177642019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c34146b9f4f6b3%3A0xadd3ff42f5e0c826!2s335%20Gillespie%20Ave%2C%20Sarasota%2C%20FL%2034236!5e0!3m2!1sen!2sus!4v1713960594395!5m2!1sen!2sus"
+					width="100%"
+					height="100%"
+					style="border: 0;"
+					allowfullscreen={true}
+					loading="lazy"
+					title="The Cookie Cottage"></iframe>
 			</div>
 			<img
 				src="/images/location.webp"
